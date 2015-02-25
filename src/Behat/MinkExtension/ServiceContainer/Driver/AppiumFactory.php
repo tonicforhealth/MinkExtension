@@ -31,20 +31,9 @@ class AppiumFactory extends Selenium2Factory
             ->children()
                 ->scalarNode('browser')->defaultValue('remote')->end()
                 ->append($this->getCapabilitiesNode())
+                ->scalarNode('wd_host')->defaultValue('http://0.0.0.0:4723/wd/hub')->end()
             ->end()
         ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function buildDriver(array $config)
-    {
-        $host = '0.0.0.0:4723';
-
-        $config['wd_host'] = sprintf('%s/wd/hub', $host);
-
-        return parent::buildDriver($config);
     }
 
     protected function getCapabilitiesNode()
